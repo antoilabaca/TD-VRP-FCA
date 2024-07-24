@@ -2,26 +2,24 @@
 Repository data for TD-VRP-FCA
 This repository shows the data used in Ilabaca, Paredes-Belmar () where it is separated into 3 groups of instances to solve The Time-Dependent Vehicle Routing Problem with Fleet and Crew Assignment where a mathematical model is formulated and an algorithm based on Black Widow Optimizer (Hayyolalam and Kazem, 2020) with Fitness calculation is designed through a constructive heuristic as an alternative to the mathematical model. 
 The necessary parameters for the model and the algorithm are the following:
-
-Translated with DeepL.com (free version)
-$I$            & set of customers/buildings \\
-$o,s$          & depot nodes \\
-$N$            & set of nodes: $N=I \cup \{o,s\}$  \\
-$A$            & set of arcs: $A=\{(i,j): i,j \in N, i\neq j\}$ \\
-$K$            & set of vehicles  \\
-$D$            & set of crew combination  \\
-$L$            & set of time intervals  \\
-$C$            & set of worker types \\ 
-$v_{ij}^l$      & speed for each time interval $l\in L$ between each pair of nodes $i\in N, j \in N \setminus \{i\}$  \\
-$\delta_{ij}$  & distance between each pair of nodes: $i\in N, j \in N \setminus \{i\}$ \\
-$t_{id}^l$      & service time for each customer $i\in I$ served with crew combination $d\in D$ in the time interval $l\in L$  \\ 
-$\omega_{d}^c$    & number of workers type $c \in C$ in each crew combination $d\in D$   \\
-$W^k$      & maximum crew number for each vehicle $k \in K$   \\
-$V^c$      & maximum number of workers $c\in C$ in a crew  \\
-$q_i$        & demand for each node $i\in N: q_o=q_s=0$   \\
-$Q^k$        & capacity for each vehicle $k\in K$ \\ 
-$Ll^l$       & lower limit time interval  $l \in L$   \\
-$Ul^l$       & upper limit time interval $l\in L$ \\ 
+- $I$ set of customers/buildings
+- $o,s$ depot nodes 
+- $N$   set of nodes: $N=I \cup \{o,s\}$  
+- $A$ set of arcs: $A=\{(i,j): i,j \in N, i\neq j\}$ 
+- $K$            & set of vehicles  
+- $D$            & set of crew combination  
+- $L$            & set of time intervals  
+- $C$            & set of worker types 
+- $v_{ij}^l$      & speed for each time interval $l\in L$ between each pair of nodes $i\in N, j \in N \setminus \{i\}$  
+- $\delta_{ij}$  & distance between each pair of nodes: $i\in N, j \in N \setminus \{i\}$ 
+- $t_{id}^l$      & service time for each customer $i\in I$ served with crew combination $d\in D$ in the time interval $l\in L$  
+- $\omega_{d}^c$    & number of workers type $c \in C$ in each crew combination $d\in D$   
+- $W^k$      & maximum crew number for each vehicle $k \in K$   
+- $V^c$      & maximum number of workers $c\in C$ in a crew  
+- $q_i$        & demand for each node $i\in N: q_o=q_s=0$   
+- $Q^k$        & capacity for each vehicle $k\in K$ 
+- $Ll^l$       & lower limit time interval  $l \in L$   
+- $Ul^l$       & upper limit time interval $l\in L$ 
 Los set de instancias se separan de la siguiente manera:
 # Small Intance
 Based on Allen et al. (2019) intance the following files are shown:
