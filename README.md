@@ -1,6 +1,6 @@
 # TD-VRP-FCA
 Repository data for TD-VRP-FCA
-This repository shows the data used in Ilabaca, Paredes-Belmar () where it is separated into 3 groups of instances to solve The Time-Dependent Vehicle Routing Problem with Fleet and Crew Assignment where a mathematical model is formulated and an algorithm based on Black Widow Optimizer (Hayyolalam and Kazem, 2020) with Fitness calculation is designed through a constructive heuristic as an alternative to the mathematical model. 
+This repository shows the data is separated into 3 groups of instances to solve The Time-Dependent Vehicle Routing Problem with Fleet and Crew Assignment where a mathematical model is formulated and an algorithm based on Black Widow Optimizer (Hayyolalam and Kazem, 2020) with Fitness calculation is designed through a constructive heuristic as an alternative to the mathematical model. 
 The necessary parameters for the model and the algorithm are the following:
 - $I$ set of customers/buildings
 - $o,s$ depot nodes 
