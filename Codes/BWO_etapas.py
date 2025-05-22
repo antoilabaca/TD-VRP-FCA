@@ -38,23 +38,17 @@ class Etapas_BWO:
     #iniciar población
     #Crear primera población (lista de rutas + asignación)
     ## inicializar población 
-    def inicializar_GA(self):
+    def inicializar(self):
         population = []
         for i in range(0,self.npop):
             ruta = Calculos_previos(self.nodos,self.n, self.q, self.Q, self.d, self.k, self.cr, self.c, self.mc, self.mx).createRoute()
-            #print(ruta)
             rutas_fact = Calculos_previos(self.nodos,self.n, self.q, self.Q, self.d, self.k, self.cr, self.c, self.mc, self.mx).FeasibilityRoute(ruta)
-            #print(rutas_fact)
             crew = Calculos_previos(self.nodos,self.n, self.q, self.Q, self.d, self.k, self.cr, self.c, self.mc, self.mx).crewAssign()
-            #print(crew)
             l = random.randint(1,2)
             solution = rutas_fact + crew
             solution.append(l)
             population.append(solution)
         return population
-
-    #Ordena fitness
-    #This function takes a population and orders it in descending order using the fitness of each individual
 
     def rankRoutes(self,population):
         fitnessResults = {}
@@ -69,10 +63,6 @@ class Etapas_BWO:
             index = self.rankRoutes(population)[i][0]
             pop.append(population[index])
         return pop
-
-    #########crossover###############################################
-    #Create a crossover function for two parents to create one child
-    #apareamiento
 
     def breed(self, parent1, parent2):
         child = []
@@ -107,40 +97,36 @@ class Etapas_BWO:
             for i in range(1,len(child)):
                 if child[i] == 0 and not found_zero:
                     del child[i]
-                    found_zero = True  # Establece la variable de control a True después de eliminar el cero
-                    #print("c-0",child)
+                    found_zero = True  
                     break
                         
           
         if len(child) < corte_cadena:
             child = child.append(0)
-           # print("c+00",child)
             
         childfact = Calculos_previos(self.nodos,self.n, self.q, self.Q, self.d, self.k, self.cr, self.c, self.mc, self.mx).FeasibilityRoute(child)
 
         if len(childfact) > corte_cadena:
             childfact = childfact[:corte_cadena]
-        #print("cf",childfact)
+   
         
         child1 = childfact + assign1
         child2 = childfact + assign2
         
         
-        #father caniballism
+        #Father caniballism
         fitnessp1 = Fitness(parent1,self.dist,self.s, self.t,self.n, self.k, self.d, self.LS,self.LI).routeFitness()
         fitnessp2 = Fitness(parent2, self.dist, self.s, self.t, self.n, self.k, self.d, self.LS,self.LI).routeFitness()
 
 
-        #if fitnessp1 > fitnessp2:
-        #    self.pop = np.delete(self.pop, parent2)
-        #else:
-        #    self.pop = np.delete(self.pop, parent1)
+        if fitnessp1 > fitnessp2:
+            self.pop = np.delete(self.pop, parent2)
+        else:
+            self.pop = np.delete(self.pop, parent1)
             
-        #print("child1, child2", child1, child2)
 
         return child1, child2
     
-    #Create function to run crossover over full mating pool
     def crossover(self, pop): #nr población de reproductores
         children = []
         for i in range(0, self.nr-1):
@@ -150,12 +136,11 @@ class Etapas_BWO:
                 ch1, ch2 = self.breed(pop[j], pop[k])
                 children.append(ch1)
                 children.append(ch2)
-    # Evaluar y ordenar hijos
         children = self.ordenar(children)
         survive_children = int(round(self.nr*0.5))
-        # canibalismo de hijos
+        # children cannibalism (with mother)
         children = children[: survive_children]
-        #print("children", children)
+      
         return children
 
     def mutation(self, pop):
