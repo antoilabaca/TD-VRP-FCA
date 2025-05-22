@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jan  9 21:24:46 2024
-
-@author: antoi
-"""
 import random
 
 class Calculos_previos:
@@ -48,11 +42,9 @@ class Calculos_previos:
         current_demand = 0
         for i in route:
             if i == 0:
-                # Cuando encontramos un cero, agregamos la demanda actual al vehículo actual
                 demanda_por_vehiculo.append(current_demand)
-                current_demand = 0  # Reiniciamos la demanda actual
+                current_demand = 0  
             else:
-                # Sumamos la demanda del cliente actual a la demanda actual
                 current_demand += self.q[i]
         return demanda_por_vehiculo
 
@@ -69,7 +61,6 @@ class Calculos_previos:
         
         return route
     
-    # Asignación de equipos:
     def crewAssign(self): 
         #crea una lista de ceros
         cap_worker = {}
@@ -78,9 +69,7 @@ class Calculos_previos:
         cap_fact = False
         
         while crew_fact == False and cap_fact == False:
-            #Elegir posición aleatoria para colocar 1
             self.crew = [0]*(self.d)
-            #print(self.crew)
             for k in range(self.k):
                 index = random.randint(0,self.d-1)
                 #index = 4
@@ -88,8 +77,7 @@ class Calculos_previos:
                     self.crew[index] = 1
                 else:
                     self.crew[index] = self.crew[index] + 1
-            #print(self.crew)
-            #evaluar factibilidad
+            #Factible evaluation
             for cr in range(1,self.cr+1):
                 cap_worker[cr] = sum(self.c[cr,d+1]*self.crew[d] for d in range(self.d))
             if all(cap_worker[cr]<=self.mc[cr] for cr in range(1,self.cr+1)):
